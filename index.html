@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Stanford Health Hacks</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Pre-launch passcode gate. Soft, client-side only: the page HTML is still
+    // present in source, so this keeps casual visitors out, not determined ones.
+    // To change the passcode, replace HASH below with the SHA-256 of your code:
+    //   printf '%s' 'YOUR-NEW-PASSCODE' | shasum -a 256
+    (function(){
+      var KEY="shh-unlocked";
+      var HASH="4652294fd300bdf139e6df6bcb738bc7bfa37cd74a53271d04f0a347b2410559"; // default: healthhacks2026
+      try{ if(localStorage.getItem(KEY)===HASH) document.documentElement.classList.add("unlocked"); }catch(e){}
+      // Pure-JS SHA-256 (ASCII) fallback for environments without crypto.subtle.
+      function sha256js(ascii){
+        function rr(v,a){return (v>>>a)|(v<<(32-a))}
+        var mp=Math.pow,mw=mp(2,32),res="",words=[],bl=ascii.length*8,hash=[],k=[],pc=0,comp={},i,j;
+        for(var cand=2;pc<64;cand++){if(!comp[cand]){for(i=0;i<313;i+=cand)comp[i]=cand;hash[pc]=(mp(cand,.5)*mw)|0;k[pc++]=(mp(cand,1/3)*mw)|0}}
+        ascii+="\x80";while(ascii.length%64-56)ascii+="\x00";
+        for(i=0;i<ascii.length;i++){j=ascii.charCodeAt(i);if(j>>8)return null;words[i>>2]|=j<<((3-i)%4)*8}
+        words[words.length]=(bl/mw)|0;words[words.length]=bl;
+        for(j=0;j<words.length;){var w=words.slice(j,j+=16),oh=hash;hash=hash.slice(0,8);
+          for(i=0;i<64;i++){var w15=w[i-15],w2=w[i-2],a=hash[0],e=hash[4];
+            var t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=(i<16)?w[i]:(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+            var t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+            hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0}
+          for(i=0;i<8;i++)hash[i]=(hash[i]+oh[i])|0}
+        for(i=0;i<8;i++)for(j=3;j+1;j--){var b=(hash[i]>>(j*8))&255;res+=((b<16)?0:"")+b.toString(16)}
+        return res;
+      }
+      function digest(str){
+        if(window.crypto&&crypto.subtle&&window.TextEncoder){
+          return crypto.subtle.digest("SHA-256",new TextEncoder().encode(str)).then(function(buf){
+            return Array.prototype.map.call(new Uint8Array(buf),function(b){return b.toString(16).padStart(2,"0")}).join("");
+          });
+        }
+        return Promise.resolve(sha256js(str));
+      }
+      document.addEventListener("DOMContentLoaded",function(){
+        if(document.documentElement.classList.contains("unlocked"))return;
+        var form=document.getElementById("gate-form"),input=document.getElementById("gate-input"),err=document.getElementById("gate-error");
+        if(!form)return;
+        input.focus();
+        function fail(msg){err.textContent=msg||"Incorrect passcode. Try again.";err.hidden=false;form.classList.add("shake");setTimeout(function(){form.classList.remove("shake")},420);input.select()}
+        form.addEventListener("submit",function(ev){
+          ev.preventDefault();err.hidden=true;
+          digest(input.value||"").then(function(hex){
+            if(hex===HASH){try{localStorage.setItem(KEY,HASH)}catch(e){}document.documentElement.classList.add("unlocked")}
+            else fail();
+          }).catch(function(){fail()});
+        });
+      });
+    })();
+  </script>
+</head>
+<body>
+  <div id="gate" role="dialog" aria-modal="true" aria-label="Passcode required">
+    <form id="gate-form" class="gate-card">
+      <div class="gate-eyebrow"><i></i> Private preview</div>
+      <div class="gate-title">Stanford Health Hacks</div>
+      <p class="gate-sub">This site isn't public yet. Enter the passcode to take a look.</p>
+      <div class="gate-row">
+        <input id="gate-input" type="password" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Passcode" aria-label="Passcode" required>
+        <button type="submit" class="gate-btn">Enter &#8599;</button>
+      </div>
+      <p id="gate-error" class="gate-error" hidden>Incorrect passcode. Try again.</p>
+    </form>
+  </div>
+  <nav class="site-nav">
+    <a class="brand" href="#home"><i class="brand-mark"><svg viewBox="0 0 30 20"><path d="M1 11H8L11 3L16 17L20 8L23 11H29"/></svg></i><span>Stanford Health Hacks</span></a>
+    <button class="menu-toggle" aria-label="Open menu">Menu</button>
+    <div class="menu"><a href="#about">About</a><a href="#tracks">Tracks</a><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#faq">FAQs</a><a class="apply" href="#">Apply &#8599;</a></div>
+  </nav>
+
+  <header class="hero" id="home">
+    <div class="hero-texture" aria-hidden="true"><i class="texture-ring tr1"></i><i class="texture-ring tr2"></i><i class="texture-ring tr3"></i></div>
+    <div class="hero-copy">
+      <div class="eyebrow"><i></i> A live experiment in better health</div>
+      <h1><span>Stanford</span><span class="health">Health</span><span class="hacks"><span class="hacks-text">Hacks</span><svg class="title-ecg" viewBox="0 0 620 110" preserveAspectRatio="none" aria-hidden="true"><path class="ghost" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/><path class="live" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/></svg></span></h1>
+      <p class="hero-intro">Stanford Medicine Catalyst and Stanford's Center for Digital Health will bring clinicians, technologists, designers, and wild ideas together. Leave with something that could change how care feels.</p>
+      <div class="hero-actions"><a class="button" href="#">Apply now</a><a class="text-link" href="#schedule">Explore the weekend &#8595;</a></div>
+      <div class="event-strip">
+        <div class="event-date">NOV 6 - 8, 2026</div>
+        <div class="event-place">Stanford Research Park&nbsp;&nbsp;|</div>
+        <div class="countdown-wrap"><div class="countdown-label">Countdown to hacking</div><div class="countdown"><div><b id="days">000</b><small>Days</small></div><div><b id="hours">00</b><small>Hours</small></div><div><b id="minutes">00</b><small>Min</small></div><div><b id="seconds">00</b><small>Sec</small></div></div></div>
+      </div>
+    </div>
+
+    <div class="hospital-scene" aria-label="Illustrated Stanford-inspired hospital campus">
+      <div class="heart-stage"><div class="heart-ring"></div>
+        <svg class="heart" viewBox="0 0 260 330">
+          <path class="vein" d="M79 102C56 82 43 56 49 25L74 19C73 49 83 66 102 79L95 111Z"/><path class="artery" d="M133 91C116 57 121 24 154 12C186 0 215 21 219 53C222 77 211 92 195 107L176 88C191 73 194 58 185 47C175 34 157 38 153 51C149 64 158 76 166 89Z"/><path class="vein" d="M184 101C207 77 226 68 247 73L248 101C226 96 211 104 195 122Z"/><path class="artery" d="M117 104C101 71 97 42 109 15L134 24C125 47 128 69 145 96Z"/>
+          <path class="outline" d="M126 310C104 277 53 246 39 185C28 136 47 99 83 98C99 97 111 106 121 118C132 96 151 82 176 86C215 92 231 132 218 181C203 235 164 276 126 310Z"/>
+          <path class="detail" d="M124 118C112 146 108 176 114 210C119 237 130 263 145 281M122 137C96 130 75 142 61 164M130 147C153 132 179 136 199 153M114 184C91 179 75 190 65 208M123 207C147 193 174 197 193 215"/>
+          <path class="flow" d="M62 42C65 68 79 82 99 95M123 31C118 61 127 82 144 101M231 86C215 86 203 94 191 111"/>
+        </svg>
+      </div>
+      <svg class="hospital" viewBox="0 0 760 500" preserveAspectRatio="xMidYMax meet">
+        <defs><linearGradient id="glass" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#dff6fa"/><stop offset="1" stop-color="#79b9cb"/></linearGradient></defs>
+        <path class="wood" d="M25 450V245H245V450Z"/>
+        <path class="glass" d="M220 152Q382 67 545 152V450H220Z"/>
+        <path class="cream" d="M535 204H735V450H535Z"/>
+        <path class="red" d="M292 348H650V397H292Z"/>
+        <path class="dark" d="M374 388H565V450H374Z"/>
+        <path class="frame-line" d="M55 276H215M55 319H215M55 362H215M83 245V450M137 245V450M191 245V450M258 166V348M312 139V348M366 119V348M420 109V348M474 119V348M528 139V348M220 220H545M220 284H545M570 231H707M570 278H707M570 325H707M603 204V348M668 204V348"/>
+        <path class="cream" d="M190 426H750V473H190Z"/><path class="frame-line" d="M225 446H714"/>
+      </svg>
+      <div class="landscape"></div>
+    </div>
+    <div class="hack-result">Build the unexpected</div>
+  </header>
+
+  <section class="content about" id="about">
+    <div><div class="section-kicker">About the experiment</div><h2 class="section-title">Healthcare needs more unusual teams.</h2><p>Stanford Health Hacks brings students, clinicians, engineers, designers, researchers, business thinkers, and digital health leaders together to tackle pressing healthcare challenges with AI and emerging technology.</p><p>The weekend is built to do more than produce demos. It is a launchpad for relationships, viable Stanford innovations, and ideas that can keep moving toward real-world care long after the final pitch.</p></div>
+    <div class="metrics"><div class="metric"><b>3</b><span>Days to build</span></div><div class="metric"><b>7</b><span>Challenge tracks</span></div><div class="metric"><b>1</b><span>Demo Day</span></div><div class="metric"><b>&#8734;</b><span>Possible collaborators</span></div></div>
+  </section>
+
+  <section class="dna-bridge" aria-label="Interdisciplinary collaboration">
+    <svg viewBox="0 0 1400 240" preserveAspectRatio="none" aria-hidden="true">
+      <path class="strand-a" d="M-70 120C-10 30 50 30 110 120S230 210 290 120S410 30 470 120S590 210 650 120S770 30 830 120S950 210 1010 120S1130 30 1190 120S1310 210 1470 120"/>
+      <path class="strand-b" d="M-70 120C-10 210 50 210 110 120S230 30 290 120S410 210 470 120S590 30 650 120S770 210 830 120S950 30 1010 120S1130 210 1190 120S1310 30 1470 120"/>
+      <g class="base-pairs">
+        <line x1="-15" y1="57" x2="-15" y2="183"/><line x1="45" y1="43" x2="45" y2="197"/><line x1="105" y1="112" x2="105" y2="128"/>
+        <line x1="165" y1="190" x2="165" y2="50"/><line x1="225" y1="184" x2="225" y2="56"/><line x1="285" y1="128" x2="285" y2="112"/>
+        <line x1="345" y1="50" x2="345" y2="190"/><line x1="405" y1="56" x2="405" y2="184"/><line x1="465" y1="112" x2="465" y2="128"/>
+        <line x1="525" y1="190" x2="525" y2="50"/><line x1="585" y1="184" x2="585" y2="56"/><line x1="645" y1="128" x2="645" y2="112"/>
+        <line x1="705" y1="50" x2="705" y2="190"/><line x1="765" y1="56" x2="765" y2="184"/><line x1="825" y1="112" x2="825" y2="128"/>
+        <line x1="885" y1="190" x2="885" y2="50"/><line x1="945" y1="184" x2="945" y2="56"/><line x1="1005" y1="128" x2="1005" y2="112"/>
+        <line x1="1065" y1="50" x2="1065" y2="190"/><line x1="1125" y1="56" x2="1125" y2="184"/><line x1="1185" y1="112" x2="1185" y2="128"/>
+        <line x1="1245" y1="190" x2="1245" y2="50"/><line x1="1305" y1="184" x2="1305" y2="56"/><line x1="1365" y1="128" x2="1365" y2="112"/>
+      </g>
+    </svg>
+    <div class="dna-message">Different disciplines. Shared DNA.</div>
+  </section>
+
+  <section class="content tracks" id="tracks"><div class="section-kicker">Challenge tracks</div><h2 class="section-title"><span class="title-line">Choose a system</span><span class="title-line">to shake up.</span></h2>
+    <div class="track-grid">
+      <article class="track"><span class="number">01 / ACCESS</span><h3>Connecting Care</h3><p>Close the distance between people, providers, and the right care at the right moment.</p></article>
+      <article class="track"><span class="number">02 / ECONOMICS</span><h3>Paying for Care</h3><p>Rethink affordability, navigation, incentives, and the financial experience of health.</p></article>
+      <article class="track"><span class="number">03 / PRECISION</span><h3>Specialized Care</h3><p>Design for complex conditions, expert pathways, and highly individualized needs.</p></article>
+      <article class="track"><span class="number">04 / INTELLIGENCE</span><h3>Decision Support</h3><p>Help clinicians and patients make clearer, safer, better-informed decisions.</p></article>
+      <article class="track"><span class="number">05 / DETECTION</span><h3>Diagnostics</h3><p>Find meaningful signals earlier, faster, and with greater confidence.</p></article>
+      <article class="track"><span class="number">06 / OPERATIONS</span><h3>Clinical Workflow Tools</h3><p>Give care teams time back by making everyday systems work more intelligently.</p></article>
+      <article class="track"><span class="number">07 / PEOPLE</span><h3>Consumer Health</h3><p>Build trusted tools that help people understand, manage, and improve their health.</p></article>
+    </div>
+  </section>
+
+  <section class="vessel-divider" aria-label="Ideas moving toward impact">
+    <svg viewBox="0 0 1400 190" preserveAspectRatio="none" aria-hidden="true">
+      <path class="vessel-main" d="M-40 137C180 31 363 177 568 89C772 1 978 159 1440 49"/>
+      <path class="vessel-inner" d="M-40 137C180 31 363 177 568 89C772 1 978 159 1440 49"/>
+    </svg>
+    <i class="blood-cell bc1"></i><i class="blood-cell bc2"></i><i class="blood-cell bc3"></i>
+    <div class="vessel-copy">Move ideas into circulation</div>
+  </section>
+
+  <section class="content speakers" id="speakers"><div class="section-kicker">Speakers + mentors</div><h2 class="section-title">Borrow experience. <span class="keep-together">Return with momentum.</span></h2>
+    <div class="speaker-grid"><article class="speaker"><div class="portrait"><svg viewBox="0 0 100 100"><circle cx="50" cy="33" r="20"/><path d="M16 91C20 61 80 61 84 91"/></svg></div><div class="speaker-copy"><h3>Speaker name</h3><p>AI + digital health leader</p></div></article><article class="speaker"><div class="portrait"><svg viewBox="0 0 100 100"><circle cx="50" cy="33" r="20"/><path d="M16 91C20 61 80 61 84 91"/></svg></div><div class="speaker-copy"><h3>Speaker name</h3><p>Clinician + Stanford advisor</p></div></article><article class="speaker"><div class="portrait"><svg viewBox="0 0 100 100"><circle cx="50" cy="33" r="20"/><path d="M16 91C20 61 80 61 84 91"/></svg></div><div class="speaker-copy"><h3>Speaker name</h3><p>Founder + translation mentor</p></div></article></div>
+  </section>
+
+  <section class="content schedule" id="schedule"><div class="section-kicker">Weekend schedule</div><h2 class="section-title">A loose plan for intense collaboration.</h2>
+    <div class="schedule-grid"><div class="day"><h3>Friday<br>Nov 6</h3><div class="schedule-item"><time>5 PM</time><span>Doors, dinner + unexpected introductions</span></div><div class="schedule-item"><time>7 PM</time><span>Opening program + challenge briefs</span></div><div class="schedule-item"><time>9 PM</time><span>Find your people. Form your team.</span></div></div><div class="day"><h3>Saturday<br>Nov 7</h3><div class="schedule-item"><time>9 AM</time><span>Breakfast + full build mode</span></div><div class="schedule-item"><time>1 PM</time><span>Mentor rounds + expert office hours</span></div><div class="schedule-item"><time>6 PM</time><span>Prototype pulse check</span></div></div><div class="day"><h3>Sunday<br>Nov 8 / Demo Day</h3><div class="schedule-item"><time>9 AM</time><span>Final build sprint</span></div><div class="schedule-item"><time>1 PM</time><span>Project submissions</span></div><div class="schedule-item"><time>3 PM</time><span>Pitches, judging + next-step opportunities</span></div></div></div>
+  </section>
+
+  <section class="content faq" id="faq"><div class="section-kicker">FAQs</div><h2 class="section-title"><span class="title-line">Useful answers,</span><span class="title-line">minus the waiting room</span></h2>
+    <div class="faq-list"><div class="faq-item"><button class="faq-question"><span>What is a health hackathon?</span><span>+</span></button><div class="faq-answer">A fast, collaborative weekend for turning real health challenges into prototypes, experiments, and new teams.</div></div><div class="faq-item"><button class="faq-question"><span>Do I need to know how to code?</span><span>+</span></button><div class="faq-answer">No. Strong teams need clinical insight, design, storytelling, research, hardware, policy, operations, and lived experience.</div></div><div class="faq-item"><button class="faq-question"><span>Who can apply?</span><span>+</span></button><div class="faq-answer">Any Stanford affiliate with an active SUNet ID.</div></div><div class="faq-item"><button class="faq-question"><span>What does it cost?</span><span>+</span></button><div class="faq-answer">It is free.</div></div><div class="faq-item"><button class="faq-question"><span>What should I bring?</span><span>+</span></button><div class="faq-answer">A laptop if you use one, anything needed for your prototype, and a willingness to work with people unlike you.</div></div></div>
+  </section>
+
+  <div class="manifesto" aria-label="Event manifesto"><div class="manifesto-track"><span>Three days.</span><span>Seven challenges.</span><span>One healthier future.</span></div></div>
+  <footer class="powered-footer">
+    <div class="powered-lockup">
+      <svg class="footer-plug" viewBox="0 0 120 82" aria-hidden="true"><path d="M4 66C18 66 22 55 22 47C22 36 29 30 39 30H53"/><path class="plug-body" d="M49 20H84V48C84 58 76 66 66 66C56 66 49 58 49 48Z"/><path d="M58 7V21M76 7V21"/><path class="plug-detail" d="M58 36H75M66.5 28V45"/><path d="M84 39H96"/><path class="spark" d="M103 19L113 19L108 29L117 29L102 48L106 34L97 34Z"/></svg>
+      <span>Powered by Catalyst + Stanford Center for Digital Health</span>
+    </div>
+  </footer>
+  <script src="js/script.js" defer></script>
+</body>
+</html>
