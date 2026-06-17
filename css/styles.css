@@ -32,10 +32,10 @@ h1 span:first-child{color:var(--red);transform:translate(calc(var(--break,0) * -
 h1 .health{margin-left:8vw;color:var(--cream);text-shadow:-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink),2px 2px 0 var(--ink);transform:translate(calc(var(--break,0) * 75px),calc(var(--break,0) * 5px)) rotate(calc(var(--break,0) * 3deg));opacity:calc(1 - var(--break,0))}
 h1 .hacks{margin-left:18vw;color:var(--red);text-shadow:none;display:flex;align-items:center;transform:translate(calc(var(--break,0) * -30px),calc(var(--break,0) * 65px)) rotate(calc(var(--break,0) * -2deg));opacity:calc(1 - var(--break,0))}
 .hacks-text{display:inline-block;flex:0 0 auto}
-.title-ecg{display:block;flex:0 0 clamp(270px,19vw,380px);width:clamp(270px,19vw,380px);height:.62em;margin:.08em 0 0 -.03em;overflow:visible}
+.title-ecg{display:block;flex:0 0 clamp(270px,19vw,380px);width:clamp(270px,19vw,380px);height:.76em;margin:.02em 0 0 -.03em;overflow:visible}
 .title-ecg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.title-ecg .ghost{display:block;stroke:var(--red);stroke-width:2.2;opacity:.45;filter:drop-shadow(0 0 4px #8C151555)}
-.title-ecg .live{stroke:var(--red);stroke-width:3.5;stroke-dasharray:1200;stroke-dashoffset:1200;filter:drop-shadow(0 0 5px #8C151566);animation:ecg-title 4.2s linear infinite}
+.title-ecg .ghost{display:block;stroke:var(--red);stroke-width:2.7;opacity:.45;filter:drop-shadow(0 0 4px #8C151555)}
+.title-ecg .live{stroke:var(--red);stroke-width:4.2;stroke-dasharray:1200;stroke-dashoffset:1200;filter:drop-shadow(0 0 5px #8C151566);animation:ecg-title 4.2s linear infinite}
 .hero-intro{width:610px;max-width:94%;margin:34px 0 0;font-size:22px;line-height:1.5;font-weight:600}
 .hero-actions{display:flex;align-items:center;gap:17px;margin:29px 0 0}
 .button{display:inline-block;padding:15px 23px;border:2px solid var(--ink);border-radius:var(--radius);background:var(--lime);font-family:"Roboto Condensed",Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;box-shadow:6px 6px 0 var(--ink)}
@@ -62,7 +62,7 @@ h1 .hacks{margin-left:18vw;color:var(--red);text-shadow:none;display:flex;align-
 .terminal-heart .terminal-overlay .terminal-pulse{fill:none;stroke:#FFFFFF;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:760;stroke-dashoffset:760;animation:monitor-draw 4.1s ease-in-out infinite}
 .terminal-heart .terminal-overlay .terminal-nodes circle{fill:#FEC51D;stroke:#B98A00;stroke-width:2;animation:blink 2.3s ease-in-out infinite}
 .terminal-chip{position:absolute;z-index:8;padding:10px 12px;border:3px solid #00C46A;border-radius:9px;background:#07181B;color:#2CF27D;font-family:"Roboto Mono",monospace;font-size:12px;font-weight:900;line-height:1.1;text-transform:uppercase;box-shadow:5px 5px 0 #2E2D2915}.terminal-chip span{display:block;color:#FEDD5C;font-size:9px;letter-spacing:.08em}.chip-a{left:28px;top:118px;border-color:#FEDD5C}.chip-b{left:40px;bottom:70px}.chip-c{right:24px;top:238px}
-.build-scene{right:6.5%;top:126px;width:48%;height:600px}
+.build-scene{right:9%;top:126px;width:48%;height:600px}
 .build-circle{position:absolute;right:0;top:0;width:min(560px,100%);aspect-ratio:1;border:3px solid #FEDD5C;border-radius:50%;background:radial-gradient(circle at 42% 32%,#1C3028 0 18%,#13221D 36%,#0D1518 63%,#070B10 100%);box-shadow:0 34px 60px #00000038,0 0 0 7px #2CF27D33,0 0 0 12px #8C151526,0 0 85px #175E543D,inset 0 0 0 1px #FFFFFF1A,inset 22px 28px 65px #2CF27D0F,inset -28px -34px 70px #00000066;overflow:hidden;animation:circle-charge 4.2s linear infinite}
 .build-circle:before{content:"";position:absolute;inset:0;background:linear-gradient(#2CF27D12 1px,transparent 1px),linear-gradient(90deg,#2CF27D12 1px,transparent 1px);background-size:122px 102px;mask-image:radial-gradient(circle,#000 0 70%,transparent 72%);animation:atlas-grid-shift 8s linear infinite}
 .build-circle:after{content:"";position:absolute;inset:18px;border:1px solid #FFFFFF18;border-radius:50%;box-shadow:inset 0 0 0 2px #2CF27D18,inset 0 0 35px #FFFFFF0B;pointer-events:none}
