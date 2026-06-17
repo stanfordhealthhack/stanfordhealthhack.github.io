@@ -32,7 +32,7 @@ h1 span:first-child{color:var(--red);transform:translate(calc(var(--break,0) * -
 h1 .health{margin-left:8vw;color:var(--cream);text-shadow:-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink),2px 2px 0 var(--ink);transform:translate(calc(var(--break,0) * 75px),calc(var(--break,0) * 5px)) rotate(calc(var(--break,0) * 3deg));opacity:calc(1 - var(--break,0))}
 h1 .hacks{margin-left:18vw;color:var(--red);text-shadow:none;display:flex;align-items:center;transform:translate(calc(var(--break,0) * -30px),calc(var(--break,0) * 65px)) rotate(calc(var(--break,0) * -2deg));opacity:calc(1 - var(--break,0))}
 .hacks-text{display:inline-block;flex:0 0 auto}
-.title-ecg{display:block;flex:0 0 clamp(135px,9vw,175px);width:clamp(135px,9vw,175px);height:.62em;margin:.08em 0 0 .02em;overflow:visible}
+.title-ecg{display:block;flex:0 0 clamp(270px,19vw,380px);width:clamp(270px,19vw,380px);height:.62em;margin:.08em 0 0 -.03em;overflow:visible}
 .title-ecg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
 .title-ecg .ghost{display:block;stroke:var(--red);stroke-width:2.2;opacity:.45;filter:drop-shadow(0 0 4px #8C151555)}
 .title-ecg .live{stroke:var(--red);stroke-width:3.5;stroke-dasharray:1200;stroke-dashoffset:1200;filter:drop-shadow(0 0 5px #8C151566);animation:ecg-title 4.2s linear infinite}
