@@ -4,6 +4,42 @@
   document.querySelector(".menu-toggle").addEventListener("click",function(){document.querySelector(".menu").classList.toggle("open")});
   document.querySelectorAll(".faq-question").forEach(function(button){button.addEventListener("click",function(){button.parentElement.classList.toggle("open")})});
   document.querySelectorAll(".menu a").forEach(function(link){link.addEventListener("click",function(){document.querySelector(".menu").classList.remove("open")})});
+  var carousel=document.querySelector(".track-carousel");
+  if(carousel){
+    var trackCards=[].slice.call(carousel.querySelectorAll(".track")),trackDots=carousel.querySelector(".track-dots"),trackIndex=0;
+    trackCards.forEach(function(card,i){
+      var dot=document.createElement("button");
+      dot.className="track-dot";
+      dot.type="button";
+      dot.setAttribute("aria-label","Show track "+(i+1));
+      dot.addEventListener("click",function(){setTrack(i)});
+      trackDots.appendChild(dot);
+    });
+    function setTrack(index){
+      trackIndex=(index+trackCards.length)%trackCards.length;
+      trackCards.forEach(function(card,i){
+        var offset=(i-trackIndex+trackCards.length)%trackCards.length;
+        card.classList.remove("is-active","is-prev","is-next","is-far-prev","is-far-next");
+        if(offset===0)card.classList.add("is-active");
+        if(offset===1)card.classList.add("is-next");
+        if(offset===trackCards.length-1)card.classList.add("is-prev");
+        if(offset===2)card.classList.add("is-far-next");
+        if(offset===trackCards.length-2)card.classList.add("is-far-prev");
+        card.setAttribute("aria-hidden",offset===0?"false":"true");
+      });
+      [].slice.call(trackDots.children).forEach(function(dot,i){
+        dot.classList.toggle("is-active",i===trackIndex);
+        dot.setAttribute("aria-current",i===trackIndex?"true":"false");
+      });
+    }
+    carousel.querySelector(".prev").addEventListener("click",function(){setTrack(trackIndex-1)});
+    carousel.querySelector(".next").addEventListener("click",function(){setTrack(trackIndex+1)});
+    carousel.addEventListener("keydown",function(event){
+      if(event.key==="ArrowLeft")setTrack(trackIndex-1);
+      if(event.key==="ArrowRight")setTrack(trackIndex+1);
+    });
+    setTrack(0);
+  }
   if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
     document.documentElement.classList.add("motion-ready");
     var sectionObserver=new IntersectionObserver(function(entries){
@@ -29,7 +65,9 @@
     var heroRect=hero.getBoundingClientRect(),stripRect=eventStrip.getBoundingClientRect();
     var centerX=hero.offsetWidth/2,centerY=hero.offsetHeight*.48;
     var landingX=(stripRect.left-heroRect.left)+(stripRect.width/2);
-    var landingY=(stripRect.bottom-heroRect.top)+66;
+    var stripBottom=stripRect.bottom-heroRect.top;
+    var grayEnd=hero.offsetHeight-95;
+    var landingY=stripBottom+((grayEnd-stripBottom)*.64);
     var dropProgress=Math.max(0,Math.min(1,(progress-.2)/.55));
     var resultX=centerX+(landingX-centerX)*dropProgress;
     var resultY=centerY+(landingY-centerY)*dropProgress;
