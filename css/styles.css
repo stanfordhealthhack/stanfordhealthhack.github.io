@@ -32,10 +32,10 @@ h1 span:first-child{color:var(--red);transform:translate(calc(var(--break,0) * -
 h1 .health{margin-left:8vw;color:var(--cream);text-shadow:-2px -2px 0 var(--ink),2px -2px 0 var(--ink),-2px 2px 0 var(--ink),2px 2px 0 var(--ink);transform:translate(calc(var(--break,0) * 75px),calc(var(--break,0) * 5px)) rotate(calc(var(--break,0) * 3deg));opacity:calc(1 - var(--break,0))}
 h1 .hacks{margin-left:18vw;color:var(--red);text-shadow:none;display:flex;align-items:center;transform:translate(calc(var(--break,0) * -30px),calc(var(--break,0) * 65px)) rotate(calc(var(--break,0) * -2deg));opacity:calc(1 - var(--break,0))}
 .hacks-text{display:inline-block;flex:0 0 auto}
-.title-ecg{display:block;flex:0 0 clamp(270px,19vw,380px);width:clamp(270px,19vw,380px);height:.76em;margin:.02em 0 0 -.03em;overflow:visible}
+.title-ecg{display:block;flex:1 1 auto;width:46vw;min-width:430px;height:.62em;margin:0 0 0 .02em;overflow:visible}
 .title-ecg path{fill:none;stroke-linecap:round;stroke-linejoin:round}
-.title-ecg .ghost{display:block;stroke:var(--red);stroke-width:2.7;opacity:.45;filter:drop-shadow(0 0 4px #8C151555)}
-.title-ecg .live{stroke:var(--red);stroke-width:4.2;stroke-dasharray:1200;stroke-dashoffset:1200;filter:drop-shadow(0 0 5px #8C151566);animation:ecg-title 4.2s linear infinite}
+.title-ecg .ghost{display:block;stroke:#2E2D2922;stroke-width:1.5;stroke-dasharray:6 11;opacity:1;filter:none}
+.title-ecg .live{stroke:var(--red);stroke-width:3.5;stroke-dasharray:1200;stroke-dashoffset:1200;filter:drop-shadow(0 0 5px #8C151566);animation:ecg-title 4.2s linear infinite}
 .hero-intro{width:610px;max-width:94%;margin:34px 0 0;font-size:22px;line-height:1.5;font-weight:600}
 .hero-actions{display:flex;align-items:center;gap:17px;margin:29px 0 0}
 .button{display:inline-block;padding:15px 23px;border:2px solid var(--ink);border-radius:var(--radius);background:var(--lime);font-family:"Roboto Condensed",Arial,sans-serif;font-size:14px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;box-shadow:6px 6px 0 var(--ink)}
