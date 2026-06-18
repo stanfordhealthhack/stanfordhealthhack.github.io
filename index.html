@@ -71,7 +71,7 @@
   </div>
   <nav class="site-nav">
     <button class="menu-toggle" aria-label="Open menu">Menu</button>
-    <div class="menu"><a href="#about">About</a><a href="#tracks">Tracks</a><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#faq">FAQs</a><a class="apply apply-link" href="#apply" data-fillout-id="bPyrUGrLUBus" data-fillout-embed-type="popup" data-fillout-button-text="Apply" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium">Apply &#8599;</a></div>
+    <div class="menu"><a href="#about">About</a><a href="#tracks">Tracks</a><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#faq">FAQs</a><a class="apply apply-link" href="https://forms.fillout.com/t/bPyrUGrLUBus">Apply &#8599;</a></div>
   </nav>
 
   <header class="hero" id="home">
@@ -80,7 +80,7 @@
       <div class="eyebrow"><i></i> A live experiment in better health</div>
       <h1><span>Stanford</span><span class="health">Health</span><span class="hacks"><span class="hacks-text">Hack</span><svg class="title-ecg" viewBox="0 0 620 110" preserveAspectRatio="none" aria-hidden="true"><path class="ghost" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/><path class="live" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/></svg></span></h1>
       <p class="hero-intro">Stanford Medicine Catalyst and Stanford's Center for Digital Health will bring clinicians, technologists, designers, and wild ideas together. Leave with something that could change how care feels.</p>
-      <div class="hero-actions"><a class="button apply-link" href="#apply" data-fillout-id="bPyrUGrLUBus" data-fillout-embed-type="popup" data-fillout-button-text="Apply" data-fillout-dynamic-resize data-fillout-inherit-parameters data-fillout-popup-size="medium">Apply now</a><a class="text-link" href="#schedule">Explore the weekend &#8595;</a></div>
+      <div class="hero-actions"><a class="button apply-link" href="https://forms.fillout.com/t/bPyrUGrLUBus">Apply now</a><a class="text-link" href="#schedule">Explore the weekend &#8595;</a></div>
       <div class="event-strip">
         <div class="event-date">NOV 6 - 8, 2026</div>
         <div class="event-place">Stanford Research Park&nbsp;&nbsp;|</div>
@@ -222,7 +222,13 @@
     </div>
     <a class="footer-contact" href="mailto:stanfordhealthhack@stanford.edu">Questions? stanfordhealthhack@stanford.edu</a>
   </footer>
-  <script src="https://server.fillout.com/embed/v1/"></script>
+  <div class="apply-modal" id="apply-modal" aria-hidden="true">
+    <div class="apply-dialog" role="dialog" aria-modal="true" aria-label="Stanford Health Hack application">
+      <button class="apply-close" type="button" aria-label="Close application form">Close</button>
+      <iframe class="apply-frame" title="Stanford Health Hack application" src="https://forms.fillout.com/t/bPyrUGrLUBus" loading="lazy"></iframe>
+      <a class="apply-fallback" href="https://forms.fillout.com/t/bPyrUGrLUBus" target="_blank" rel="noopener">Open application in a new tab</a>
+    </div>
+  </div>
   <script src="js/script.js" defer></script>
 </body>
 </html>
