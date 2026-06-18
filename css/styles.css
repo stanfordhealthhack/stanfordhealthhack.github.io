@@ -195,11 +195,6 @@ section.content>*{position:relative;z-index:2}
 .footer-contact{margin-left:88px;color:#FFFFFFC7;font-family:"Roboto",Arial,sans-serif;font-size:14px;font-weight:700;letter-spacing:.01em;text-transform:none;text-decoration:none}
 .footer-contact:hover{color:var(--lime)}
 .footer-note{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF88}
-.apply-overlay{position:fixed;inset:0;z-index:9999;display:none;background:#F4F4F4}
-.apply-overlay.open{display:block}
-.apply-frame{width:100%;height:100%}
-.apply-close{position:fixed;z-index:10000;right:18px;top:18px;padding:11px 15px;border:2px solid var(--ink);border-radius:var(--radius-sm);background:var(--lime);color:var(--ink);font:900 13px "Roboto Condensed",Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;box-shadow:4px 4px 0 var(--ink)}
-.apply-close:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--ink)}
 .manifesto{height:68px;overflow:hidden;background:var(--lime);color:var(--ink);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);font-family:"Roboto Condensed",Arial,sans-serif;font-size:clamp(18px,2vw,31px);font-weight:900;text-transform:uppercase}
 .manifesto-track{width:100%;height:100%;display:grid;grid-template-columns:repeat(3,1fr);align-items:center}
 .manifesto span{position:relative;display:flex;align-items:center;justify-content:center;height:66px;padding:0 4vw;white-space:nowrap;animation:manifesto-pulse 4.8s ease-in-out infinite}

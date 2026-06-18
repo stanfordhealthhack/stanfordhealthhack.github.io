@@ -4,23 +4,6 @@
   document.querySelector(".menu-toggle").addEventListener("click",function(){document.querySelector(".menu").classList.toggle("open")});
   document.querySelectorAll(".faq-question").forEach(function(button){button.addEventListener("click",function(){button.parentElement.classList.toggle("open")})});
   document.querySelectorAll(".menu a").forEach(function(link){link.addEventListener("click",function(){document.querySelector(".menu").classList.remove("open")})});
-  var applyModal=document.getElementById("apply-modal"),applyClose=document.querySelector(".apply-close");
-  function openApply(event){
-    if(event)event.preventDefault();
-    if(!applyModal)return;
-    applyModal.classList.add("open");
-    applyModal.setAttribute("aria-hidden","false");
-    document.documentElement.style.overflow="hidden";
-  }
-  function closeApply(){
-    if(!applyModal)return;
-    applyModal.classList.remove("open");
-    applyModal.setAttribute("aria-hidden","true");
-    document.documentElement.style.overflow="";
-  }
-  document.querySelectorAll(".apply-link").forEach(function(link){link.addEventListener("click",openApply)});
-  if(applyClose)applyClose.addEventListener("click",closeApply);
-  document.addEventListener("keydown",function(event){if(event.key==="Escape")closeApply()});
   var carousel=document.querySelector(".track-carousel");
   if(carousel){
     var trackCards=[].slice.call(carousel.querySelectorAll(".track")),trackDots=carousel.querySelector(".track-dots"),trackIndex=0;
