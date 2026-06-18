@@ -5,9 +5,8 @@ html{scroll-behavior:smooth}
 body{margin:0;background:var(--cream);color:var(--ink);font-family:"Roboto",Arial,sans-serif}
 a{color:inherit}
 .site-nav{position:fixed;z-index:100;top:0;left:0;right:0;height:72px;padding:0 4vw;display:flex;align-items:center;justify-content:space-between;background:#F4F4F4E8;border-bottom:1px solid #2E2D2922;backdrop-filter:blur(14px)}
-.brand{display:flex;align-items:center;gap:11px;font-family:"Roboto Condensed",Arial,sans-serif;font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
-.brand-mark{width:38px;height:38px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:50%;background:var(--lime)}
-.brand-mark svg{width:27px}.brand-mark path{fill:none;stroke:var(--red);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.brand{display:flex;align-items:center;text-decoration:none}
+.stanford-nav-logo{display:block;width:auto;height:42px;object-fit:contain}
 .menu{display:flex;align-items:center;gap:25px;font-family:"Roboto Condensed",Arial,sans-serif;font-size:13px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
 .menu a{text-decoration:none}.menu a:hover{color:var(--red)}
 .menu .apply{padding:11px 17px;background:var(--red);color:#FFFFFF;border:2px solid var(--ink);border-radius:var(--radius-sm);box-shadow:4px 4px 0 var(--lime)}
