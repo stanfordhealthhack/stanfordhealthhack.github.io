@@ -269,11 +269,11 @@ section.content>*{position:relative;z-index:2}
 @keyframes code-morph{0%,100%{opacity:.18;letter-spacing:.02em;transform:translateY(0)}30%{opacity:.6;letter-spacing:.08em}55%{opacity:.28;transform:translateY(7px)}75%{opacity:.48;letter-spacing:.04em}}
 @keyframes atlas-grid-shift{to{background-position:122px 102px}}
 @keyframes heart-atlas{0%,28%,100%{transform:scale(1);opacity:.98}9%{transform:scale(1.08);opacity:1}16%{transform:scale(.98)}}
-@keyframes circle-charge{0%,64%,100%{box-shadow:0 34px 60px #00000038,0 0 0 7px #2CF27D33,0 0 0 12px #8C151526,0 0 85px #175E543D,inset 0 0 0 1px #FFFFFF1A,inset 22px 28px 65px #2CF27D0F,inset -28px -34px 70px #00000066}72%,80%{box-shadow:0 34px 60px #00000038,0 0 0 10px #FEDD5CAA,0 0 0 18px #2CF27D88,0 0 145px #2CF27DCC,inset 0 0 0 2px #FFFFFF66,inset 22px 28px 95px #2CF27D4A,inset -28px -34px 70px #00000066}}
-@keyframes grid-charge{0%,64%,100%{opacity:.18;filter:none}72%,80%{opacity:.55;filter:drop-shadow(0 0 6px #FEDD5C88)}}
-@keyframes body-charge{0%,64%,100%{opacity:.58;filter:none}72%,80%{opacity:1;filter:drop-shadow(0 0 15px #2CF27D) drop-shadow(0 0 8px #FEDD5C)}}
-@keyframes organ-charge{0%,64%,100%{filter:drop-shadow(0 0 8px #2CF27D44)}72%,80%{filter:drop-shadow(0 0 22px #FEDD5C) drop-shadow(0 0 16px #2CF27D)}}
-@keyframes label-charge{0%,64%,100%{fill:#FFFFFF;opacity:1;filter:drop-shadow(0 0 10px #FFFFFF66)}72%,80%{fill:#FFFFFF;opacity:1;filter:drop-shadow(0 0 16px #FFFFFF) drop-shadow(0 0 12px #FEDD5C)}}
+@keyframes circle-charge{0%,72%,100%{box-shadow:0 34px 60px #00000038,0 0 0 7px #2CF27D33,0 0 0 12px #8C151526,0 0 85px #175E543D,inset 0 0 0 1px #FFFFFF1A,inset 22px 28px 65px #2CF27D0F,inset -28px -34px 70px #00000066}78%,84%{box-shadow:0 34px 60px #00000038,0 0 0 11px #2CF27DCC,0 0 0 22px #2CF27D77,0 0 170px #2CF27D,inset 0 0 0 2px #2CF27D,inset 22px 28px 110px #2CF27D5F,inset -28px -34px 70px #00000066}}
+@keyframes grid-charge{0%,72%,100%{opacity:.18;filter:none}78%,84%{opacity:.68;filter:drop-shadow(0 0 9px #2CF27D)}}
+@keyframes body-charge{0%,72%,100%{opacity:.58;filter:none}78%,84%{opacity:1;filter:drop-shadow(0 0 18px #2CF27D) drop-shadow(0 0 10px #2CF27D)}}
+@keyframes organ-charge{0%,72%,100%{filter:drop-shadow(0 0 8px #2CF27D44)}78%,84%{filter:drop-shadow(0 0 25px #2CF27D) drop-shadow(0 0 12px #FEDD5C)}}
+@keyframes label-charge{0%,72%,100%{fill:#FFFFFF;opacity:1;filter:drop-shadow(0 0 10px #FFFFFF66)}78%,84%{fill:#FFFFFF;opacity:1;filter:drop-shadow(0 0 18px #FFFFFF) drop-shadow(0 0 15px #2CF27D)}}
 @keyframes contact-charge{0%,64%,100%{opacity:.72;transform:translate(-50%,-50%) scale(.78)}72%,80%{opacity:1;transform:translate(-50%,-50%) scale(1.28);box-shadow:0 0 0 8px #8C151566,0 0 34px #FEDD5C,0 0 68px #2CF27D}}
 @media(max-width:900px){
   .site-nav{height:62px;padding:0 18px}.brand span{display:none}.menu{position:absolute;display:none;top:62px;left:0;right:0;padding:20px;background:var(--cream);flex-direction:column;align-items:stretch}.menu.open{display:flex}.menu-toggle{display:block}
