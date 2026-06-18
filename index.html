@@ -70,9 +70,8 @@
     </form>
   </div>
   <nav class="site-nav">
-    <a class="brand" href="#home" aria-label="Stanford University"><img class="stanford-nav-logo" src="assets/logos/stanford-block-s.avif" alt="Stanford University"></a>
     <button class="menu-toggle" aria-label="Open menu">Menu</button>
-    <div class="menu"><a href="#about">About</a><a href="#tracks">Tracks</a><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#faq">FAQs</a><a class="apply" href="#">Apply &#8599;</a></div>
+    <div class="menu"><a href="#about">About</a><a href="#tracks">Tracks</a><a href="#speakers">Speakers</a><a href="#schedule">Schedule</a><a href="#faq">FAQs</a><a class="apply apply-link" href="#apply">Apply &#8599;</a></div>
   </nav>
 
   <header class="hero" id="home">
@@ -81,7 +80,7 @@
       <div class="eyebrow"><i></i> A live experiment in better health</div>
       <h1><span>Stanford</span><span class="health">Health</span><span class="hacks"><span class="hacks-text">Hack</span><svg class="title-ecg" viewBox="0 0 620 110" preserveAspectRatio="none" aria-hidden="true"><path class="ghost" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/><path class="live" d="M0 57H60Q78 30 96 57H118L125 65 134 10 143 95 152 57H180Q210 32 245 57H320Q338 30 356 57H378L385 65 394 10 403 95 412 57H440Q470 32 505 57H620"/></svg></span></h1>
       <p class="hero-intro">Stanford Medicine Catalyst and Stanford's Center for Digital Health will bring clinicians, technologists, designers, and wild ideas together. Leave with something that could change how care feels.</p>
-      <div class="hero-actions"><a class="button" href="#">Apply now</a><a class="text-link" href="#schedule">Explore the weekend &#8595;</a></div>
+      <div class="hero-actions"><a class="button apply-link" href="#apply">Apply now</a><a class="text-link" href="#schedule">Explore the weekend &#8595;</a></div>
       <div class="event-strip">
         <div class="event-date">NOV 6 - 8, 2026</div>
         <div class="event-place">Stanford Research Park&nbsp;&nbsp;|</div>
@@ -203,7 +202,7 @@
   </section>
 
   <section class="content schedule" id="schedule"><div class="section-kicker">Weekend schedule</div><h2 class="section-title">A loose plan for intense collaboration.</h2>
-    <div class="schedule-grid"><div class="day"><h3>Friday<br>Nov 6</h3><div class="schedule-item"><time>5 PM</time><span>Doors, dinner + unexpected introductions</span></div><div class="schedule-item"><time>7 PM</time><span>Opening program + challenge briefs</span></div><div class="schedule-item"><time>9 PM</time><span>Find your people. Form your team.</span></div></div><div class="day"><h3>Saturday<br>Nov 7</h3><div class="schedule-item"><time>9 AM</time><span>Breakfast + full build mode</span></div><div class="schedule-item"><time>1 PM</time><span>Mentor rounds + expert office hours</span></div><div class="schedule-item"><time>6 PM</time><span>Prototype pulse check</span></div></div><div class="day"><h3>Sunday<br>Nov 8 / Demo Day</h3><div class="schedule-item"><time>9 AM</time><span>Final build sprint</span></div><div class="schedule-item"><time>1 PM</time><span>Project submissions</span></div><div class="schedule-item"><time>3 PM</time><span>Pitches, judging + next-step opportunities</span></div></div></div>
+    <div class="schedule-grid"><div class="day"><h3>Friday<br>Nov 6</h3><div class="schedule-item"><time>6 PM</time><span>Doors, dinner + unexpected introductions</span></div><div class="schedule-item"><time>7 PM</time><span>Opening program + challenge briefs</span></div><div class="schedule-item"><time>9 PM</time><span>Find your people. Form your team.</span></div></div><div class="day"><h3>Saturday<br>Nov 7</h3><div class="schedule-item"><time>9 AM</time><span>Breakfast + full build mode</span></div><div class="schedule-item"><time>1 PM</time><span>Mentor rounds + expert office hours</span></div><div class="schedule-item"><time>6 PM</time><span>Prototype pulse check</span></div></div><div class="day"><h3>Sunday<br>Nov 8 / Demo Day</h3><div class="schedule-item"><time>9 AM</time><span>Final build sprint</span></div><div class="schedule-item"><time>1 PM</time><span>Project submissions</span></div><div class="schedule-item"><time>3 PM</time><span>Pitches, judging + next-step opportunities</span></div></div></div>
   </section>
 
   <section class="content faq" id="faq"><div class="section-kicker">FAQs</div><h2 class="section-title"><span class="title-line">Useful answers,</span><span class="title-line">minus the waiting room</span></h2>
@@ -223,6 +222,11 @@
     </div>
     <a class="footer-contact" href="mailto:stanfordhealthhack@stanford.edu">Questions? stanfordhealthhack@stanford.edu</a>
   </footer>
+  <div class="apply-overlay" id="apply-modal" aria-hidden="true">
+    <button class="apply-close" type="button" aria-label="Close application form">Close</button>
+    <div class="apply-frame" data-fillout-id="bPyrUGrLUBus" data-fillout-embed-type="fullscreen" data-fillout-inherit-parameters></div>
+  </div>
+  <script src="https://server.fillout.com/embed/v1/"></script>
   <script src="js/script.js" defer></script>
 </body>
 </html>
