@@ -1,8 +1,14 @@
 (function(){
   var eventDate=new Date("2026-11-06T17:00:00-08:00").getTime(),d=document.getElementById("days"),h=document.getElementById("hours"),m=document.getElementById("minutes"),s=document.getElementById("seconds");
   function update(){var r=Math.max(0,eventDate-Date.now());d.textContent=String(Math.floor(r/86400000)).padStart(3,"0");h.textContent=String(Math.floor(r/3600000%24)).padStart(2,"0");m.textContent=String(Math.floor(r/60000%60)).padStart(2,"0");s.textContent=String(Math.floor(r/1000%60)).padStart(2,"0")}update();setInterval(update,1000);
-  document.querySelector(".menu-toggle").addEventListener("click",function(){document.querySelector(".menu").classList.toggle("open")});
-  document.querySelectorAll(".faq-question").forEach(function(button){button.addEventListener("click",function(){button.parentElement.classList.toggle("open")})});
+  var menuToggle=document.querySelector(".menu-toggle");
+  if(menuToggle)menuToggle.addEventListener("click",function(){document.querySelector(".menu").classList.toggle("open")});
+  document.addEventListener("click",function(event){
+    var question=event.target.closest(".faq-question");
+    if(question){var item=question.closest(".faq-item");if(item)item.classList.toggle("open");return}
+    var more=event.target.closest(".faq-more");
+    if(more){var extra=document.getElementById(more.getAttribute("aria-controls")),open=!more.classList.contains("open"),label=more.querySelector(".more-label");more.classList.toggle("open",open);more.setAttribute("aria-expanded",open?"true":"false");if(extra){extra.classList.toggle("open",open);if(!open)extra.querySelectorAll(".faq-item.open").forEach(function(item){item.classList.remove("open")})}if(label)label.textContent=open?more.dataset.less:more.dataset.more}
+  });
   document.querySelectorAll(".menu a").forEach(function(link){link.addEventListener("click",function(){document.querySelector(".menu").classList.remove("open")})});
   var applyModal=document.getElementById("apply-modal"),applyClose=document.querySelector(".apply-close");
   function openApply(event){
